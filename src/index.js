@@ -5,7 +5,7 @@ export function contaPalavras(data) {
         if (!paragrafo) return []
         return verificarCaracteresDuplicados(paragrafo);
     })
-    console.log(contagem);
+    return contagem;
 }
 
 function extrairPalavras(data) {
