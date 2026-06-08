@@ -1,0 +1,10 @@
+
+function trataErros(erro){
+    if (erro.code ==='ENOENT'){
+        throw new Error('Arquivo não encontrado. Verifique o caminho e tente novamente.');
+    }else{
+        return 'Ocorreu um erro ao ler o arquivo';
+    }
+}
+
+module.exports = trataErros;

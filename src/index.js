@@ -1,16 +1,16 @@
 const fs = require('fs');
-
+const trataErros = require('./erros/funcoesErros');
 
 const caminhoArquivo = process.argv;
 const link = caminhoArquivo[2];
 
-fs.readFile(link, 'utf8', (err, data) =>{
-    if (err) {
-        console.log('Qual foi o erro? ', err.code);
-        return;
+fs.readFile(link, 'utf8', (erro, data) => {
+    try {
+        if (erro) throw erro
+        contaPalavras(data);
+    } catch (erro) {
+        trataErros(erro);
     }
-    contaPalavras(data);
-
 })
 
 function contaPalavras(data) {
@@ -42,4 +42,5 @@ function verificarCaracteresDuplicados(data) {
         }
     })
 
-    return resultado;}
+    return resultado;
+}
