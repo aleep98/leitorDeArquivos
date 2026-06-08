@@ -1,5 +1,5 @@
 
-function trataErros(erro){
+export default function trataErros(erro){
     if (erro.code ==='ENOENT'){
         throw new Error('Arquivo não encontrado. Verifique o caminho e tente novamente.');
     }else{
@@ -7,4 +7,3 @@ function trataErros(erro){
     }
 }
 
-module.exports = trataErros;
