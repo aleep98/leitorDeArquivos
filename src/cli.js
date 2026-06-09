@@ -2,6 +2,24 @@ import fs from 'fs';
 import trataErros from './erros/funcoesErros.js';
 import { contaPalavras } from './index.js';
 import { montaSaidaArquivo } from './helpers.js';
+import { Command } from 'commander';
+
+const program = new Command();
+
+program
+    .option('-i, --input <string>', 'Caminho do arquivo de entrada')
+    .option('-o, --output <string>', 'Caminho do diretório de saída')
+    .action((options) => {
+        const { input, output } = options;
+        if (!input || !output) {
+            console.error('Por favor, forneça os caminhos de entrada e saída usando as opções -i e -o.');
+            program.help(); // Exibe a ajuda do comando e encerra o processo
+            return;
+        }
+    });
+
+program.parse(process.argv);
+
 
 const caminhoArquivo = process.argv;
 const link = caminhoArquivo[2];
