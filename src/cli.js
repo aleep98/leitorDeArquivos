@@ -4,6 +4,7 @@ import trataErros from './erros/funcoesErros.js';
 import { contaPalavras } from './index.js';
 import { montaSaidaArquivo } from './helpers.js';
 import { Command } from 'commander';
+import chalk from 'chalk';
 
 const program = new Command();
 
@@ -25,9 +26,9 @@ program
 
       try {
          processaArquivo(textoEntrada, diretorioSaida);
-         console.log('Processamento iniciado. Por favor, aguarde...');
+         console.log(chalk.green('Processamento iniciado. Por favor, aguarde...'));
       } catch (erro) {
-         console.error('Ocorreu um erro durante o processamento:', erro);
+         console.error(chalk.red('Ocorreu um erro durante o processamento:'), erro);
       }
    });
 program.parse();
@@ -67,13 +68,13 @@ function criaESalvaArquivo(listaPalavras, endereco) {
 
    fs.promises.writeFile(arquivoNovo, textoPalavras)
       .then(() => {
-         console.log('Arquivo criado!');
+         console.log(chalk.green('Arquivo criado!'));
       })
       .catch((erro) => {
-         trataErros(erro);
+         console.error(chalk.red('Ocorreu um erro ao criar o arquivo:'), erro);
       })
       .finally(() => {
-         console.log('Processo de criação do arquivo finalizado.');
+         console.log(chalk.blue('Processo de criação do arquivo finalizado.'));
       });
 
 }
